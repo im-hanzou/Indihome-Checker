@@ -81,7 +81,7 @@ def main():
 """, 'green'))
 	listEmpas = input("[?] List Empas > ")
 	try:
-		listEmpas = open(listEmpas)
+		listEmpas = open(listEmpas, encoding='utf-8')
 	except FileNotFoundError:
 		print(colored("[!] File "+ listEmpas +" Tidak Ada [!]", "red"))
 		sleep(1)
@@ -89,7 +89,7 @@ def main():
 	listEmpas.seek(0)
 	delimiter = input("[?] Delimiter/Pemisah > ")
 	print("-----------------------------------------------------------------------------------------------")
-	with ThreadPoolExecutor(max_workers=20) as exe:
+	with ThreadPoolExecutor(max_workers=50) as exe:
 		for empas in listEmpas.readlines():
 			empas = empas.strip().split(delimiter)
 			if not empas or len(empas) != 2:
